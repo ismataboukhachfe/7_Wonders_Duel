@@ -10,11 +10,11 @@ skinparam classAttributeIconSize 0
 
 
 class City{
-  -victory_points
-  -money
-  -treasur
+  -victory_points : integer
+  -money : integer
+  -treasury : integer
   -ressources
-  -number_of_shields
+  -number_of_shields : integer
   -scientific_symbols : struct symbol[]
 
   +trade()
@@ -41,25 +41,52 @@ struct ScientificSymbol{
 class Card{
   -name
   -cost[]
-  -owner
-  -effects[]
-  
+  -owner  
   +getPrice()
 }
 
 
+
 class Building{
-  -age
+  -age : integer
   -visible : bool
   -type
   -chain_cost
-  
   +build()
-  -useEffects()
   -discardIt()
   
   
 }
+class Rawmaterials_browncards {
+-produce_resources()
+}
+class Manufacturedgoods_greycards { 
+
+-produce_resources() 
+}
+class CivilianBuildings_bluecards
+{  
+-increasevictorypoints()
+}
+
+class Scientificbuildings_greencards { 
+-score_victory_points() 
+-add_scientific symbol()
+} 
+class commercialbuildings_yellowcards { 
+-add_coins()
+-produce_resources()
+-change_rules()
+-increasevictorypoints() 
+} 
+
+class militarybuildings_redcards {  
+-increasemilitarypower()
+}
+class Guilds_purplecards { 
+
+-scorepoints()
+} 
 
 class Wonder{
   -activated : bool
@@ -80,7 +107,15 @@ class ConflictPawn{
   +move()
 }
 
+
 Card <|-- Building
+Building <|-- Rawmaterials_browncards
+Building <|-- Manufacturedgoods_greycards
+Building <|-- CivilianBuildings_bluecards
+Building <|-- Scientificbuildings_greencards
+Building <|-- commercialbuildings_yellowcards
+Building <|-- militarybuildings_redcards
+Building <|-- Guilds_purplecards
 Card <|-- Wonder
 Card <|-- ProgressToken
 City o-- "*" Card
